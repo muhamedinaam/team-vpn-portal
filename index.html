@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AeroShield Team VPN | Multi-Region Gateway</title>
+  <meta name="description" content="Secure, high-speed multi-region VPN portal for our 5-person team with exit nodes in Germany, France, and Australia.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Ambient background glow layers -->
+  <div class="glow-orb orb-1"></div>
+  <div class="glow-orb orb-2"></div>
+  <div class="glow-orb orb-3"></div>
+
+  <!-- Navigation / Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-group">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">AeroShield</span>
+          <span class="brand-tag">Team Gateway</span>
+        </div>
+      </div>
+
+      <div class="header-controls">
+        <!-- Team Member Selector -->
+        <div class="user-select-card" id="userSelectorWrap">
+          <div class="user-avatar" id="currentUserAvatar">JD</div>
+          <div class="user-meta">
+            <span class="user-role-label">Active Member</span>
+            <select id="userSelect" class="user-dropdown" aria-label="Select Team Member">
+              <option value="0">Alex Vance (DevOps) - 10.8.0.2</option>
+              <option value="1">Maya Lin (Frontend) - 10.8.0.3</option>
+              <option value="2">Liam Chen (Backend) - 10.8.0.4</option>
+              <option value="3">Elena Rossi (QA / Sec) - 10.8.0.5</option>
+              <option value="4">Jordan Reed (Product) - 10.8.0.6</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- AWS Config Button -->
+        <button id="openSettingsBtn" class="btn btn-secondary icon-btn" title="Configure AWS Server Endpoints">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+          <span>AWS Endpoints</span>
+        </button>
+
+        <!-- Help Guide Button -->
+        <button id="openGuideBtn" class="btn btn-secondary icon-btn" title="Setup Instructions">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+          </svg>
+          <span>Guide</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    
+    <!-- Hero Status Section -->
+    <section class="status-hero glass-panel" id="heroStatusSection">
+      <div class="hero-content">
+        <div class="hero-left">
+          <div class="status-badge" id="tunnelStatusBadge">
+            <span class="status-dot pulse-dot"></span>
+            <span class="status-text" id="statusBadgeText">Gateway Ready</span>
+          </div>
+          <h1 class="hero-title">Private Team Mesh VPN</h1>
+          <p class="hero-subtitle">
+            Secure, encrypted WireGuard tunneling across AWS multi-region cloud nodes.
+          </p>
+
+          <!-- Current Telemetry Metric Cards -->
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <span class="metric-label">Selected Exit Node</span>
+              <div class="metric-value-wrap">
+                <span class="flag-icon" id="heroFlag">🇩🇪</span>
+                <span class="metric-val" id="heroCountryName">Frankfurt, Germany</span>
+              </div>
+            </div>
+            <div class="metric-card">
+              <span class="metric-label">Internal IP</span>
+              <span class="metric-val code-font" id="heroInternalIp">10.8.0.2</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-label">Live Ping</span>
+              <span class="metric-val text-accent" id="heroLatency">~34 ms</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-label">Encryption</span>
+              <span class="metric-val text-success">ChaCha20-Poly1305</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <!-- Big Connect / Test Tunnel Button -->
+          <div class="shield-container">
+            <button id="toggleTunnelBtn" class="shield-btn" aria-label="Toggle VPN Connection">
+              <div class="shield-ring"></div>
+              <div class="shield-inner">
+                <svg class="shield-svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+                <span class="shield-label" id="shieldActionLabel">TEST TUNNEL</span>
+              </div>
+            </button>
+            <div class="tunnel-live-stats" id="tunnelLiveStats" style="display:none;">
+              <span class="stats-item">▲ <span id="uploadSpeed">1.2 MB/s</span></span>
+              <span class="stats-item">▼ <span id="downloadSpeed">14.8 MB/s</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Region Selection Cards -->
+    <section class="section-container" id="regionsSection">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Select Exit Gateway</h2>
+          <p class="section-desc">Route your traffic through any of our 3 dedicated cloud nodes.</p>
+        </div>
+        <button id="pingAllBtn" class="btn btn-secondary btn-sm" title="Re-test latency to all servers">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 4 23 10 17 10"></polyline>
+            <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+          </svg>
+          <span>Refresh Latencies</span>
+        </button>
+      </div>
+
+      <div class="regions-grid" id="regionsGrid">
+        <!-- Germany Card -->
+        <div class="region-card glass-panel active-region" data-region="germany" id="cardGermany">
+          <div class="region-badge-active">ACTIVE EXIT</div>
+          <div class="card-head">
+            <div class="flag-circle">🇩🇪</div>
+            <div class="head-info">
+              <h3 class="region-name">Germany</h3>
+              <span class="city-name">Frankfurt am Main</span>
+            </div>
+            <div class="aws-pill">eu-central-1</div>
+          </div>
+          <div class="card-specs">
+            <div class="spec-row">
+              <span class="spec-key">Public Server IP:</span>
+              <span class="spec-val code-font server-ip-display" id="ipDisplayGermany">3.120.45.19</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">Estimated Latency:</span>
+              <span class="spec-val latency-badge low-ping" id="pingGermany">32 ms</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">Protocol Port:</span>
+              <span class="spec-val code-font">UDP 51820</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">Server Health:</span>
+              <span class="spec-val text-success">Online (99.9%)</span>
+            </div>
+          </div>
+          <div class="card-actions">
+            <button class="btn btn-primary select-region-btn" data-region="germany">
+              <span>Selected Node</span>
+            </button>
+            <button class="btn btn-secondary download-conf-btn" data-region="germany" title="Download WireGuard .conf for Germany">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>.conf</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- France Card -->
+        <div class="region-card glass-panel" data-region="france" id="cardFrance">
+          <div class="region-badge-active">ACTIVE EXIT</div>
+          <div class="card-head">
+            <div class="flag-circle">🇫🇷</div>
+            <div class="head-info">
+              <h3 class="region-name">France</h3>
+              <span class="city-name">Paris</span>
+            </div>
+            <div class="aws-pill">eu-west-3</div>
+          </div>
+          <div class="card-specs">
+            <div class="spec-row">
+              <span class="spec-key">Public Server IP:</span>
+              <span class="spec-val code-font server-ip-display" id="ipDisplayFrance">15.237.89.44</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">Estimated Latency:</span>
+              <span class="spec-val latency-badge low-ping" id="pingFrance">41 ms</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">Protocol Port:</span>
+              <span class="spec-val code-font">UDP 51820</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">Server Health:</span>
+              <span class="spec-val text-success">Online (99.9%)</span>
+            </div>
+          </div>
+          <div class="card-actions">
+            <button class="btn btn-primary select-region-btn" data-region="france">
+              <span>Switch to France</span>
+            </button>
+            <button class="btn btn-secondary download-conf-btn" data-region="france" title="Download WireGuard .conf for France">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>.conf</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Australia Card -->
+        <div class="region-card glass-panel" data-region="australia" id="cardAustralia">
+          <div class="region-badge-active">ACTIVE EXIT</div>
+          <div class="card-head">
+            <div class="flag-circle">🇦🇺</div>
+            <div class="head-info">
+              <h3 class="region-name">Australia</h3>
+              <span class="city-name">Sydney</span>
+            </div>
+            <div class="aws-pill">ap-southeast-2</div>
+          </div>
+          <div class="card-specs">
+            <div class="spec-row">
+              <span class="spec-key">Public Server IP:</span>
+              <span class="spec-val code-font server-ip-display" id="ipDisplayAustralia">13.239.112.78</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">Estimated Latency:</span>
+              <span class="spec-val latency-badge med-ping" id="pingAustralia">185 ms</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">Protocol Port:</span>
+              <span class="spec-val code-font">UDP 51820</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">Server Health:</span>
+              <span class="spec-val text-success">Online (99.9%)</span>
+            </div>
+          </div>
+          <div class="card-actions">
+            <button class="btn btn-primary select-region-btn" data-region="australia">
+              <span>Switch to Australia</span>
+            </button>
+            <button class="btn btn-secondary download-conf-btn" data-region="australia" title="Download WireGuard .conf for Australia">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>.conf</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WireGuard Profile Generator & QR Code -->
+    <section class="section-container" id="profileGeneratorSection">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">WireGuard Profile & QR Code</h2>
+          <p class="section-desc">Instantly download this config for desktop or scan the QR code on mobile.</p>
+        </div>
+        <div class="profile-meta-pills">
+          <span class="meta-pill" id="profileUserPill">User: Alex Vance</span>
+          <span class="meta-pill" id="profileNodePill">Node: Germany (eu-central-1)</span>
+        </div>
+      </div>
+
+      <div class="profile-split-grid">
+        <!-- Left: WireGuard Config Code Block -->
+        <div class="config-view-card glass-panel">
+          <div class="config-card-header">
+            <div class="code-title-wrap">
+              <div class="terminal-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <span class="file-tag" id="configFilenameTag">aeroshield-germany-alex.conf</span>
+            </div>
+            <div class="code-header-actions">
+              <button id="copyConfigBtn" class="btn btn-secondary btn-sm" title="Copy configuration to clipboard">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <span id="copyBtnText">Copy</span>
+              </button>
+              <button id="downloadActiveConfBtn" class="btn btn-primary btn-sm">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Download .conf</span>
+              </button>
+            </div>
+          </div>
+          <pre class="config-code-content"><code id="configDisplayCode"># Generating WireGuard configuration...</code></pre>
+        </div>
+
+        <!-- Right: QR Code for Mobile Scanning -->
+        <div class="qr-view-card glass-panel">
+          <div class="qr-box-header">
+            <h3 class="qr-title">Mobile WireGuard Import</h3>
+            <p class="qr-subtitle">Scan directly from the official iOS/Android WireGuard app</p>
+          </div>
+          <div class="qr-canvas-container" id="qrContainer">
+            <!-- Pure client-side SVG QR code injected here -->
+          </div>
+          <div class="qr-footer-note">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+              <line x1="12" y1="18" x2="12.01" y2="18"></line>
+            </svg>
+            <span>Opens camera in WireGuard App ➔ Add Tunnel</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Roster Section -->
+    <section class="section-container" id="teamSection">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">5-Member Team Subnet Roster</h2>
+          <p class="section-desc">Allocated internal IPs and static WireGuard cryptographic peer mappings.</p>
+        </div>
+      </div>
+
+      <div class="glass-panel team-table-wrapper">
+        <table class="team-table" id="teamTable">
+          <thead>
+            <tr>
+              <th>Team Member</th>
+              <th>Assigned Subnet IP</th>
+              <th>Assigned Key Pair</th>
+              <th>Allowed Gateway Nodes</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="teamTableBody">
+            <!-- Dynamically populated -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- AWS Endpoints Settings Modal -->
+  <div class="modal-backdrop" id="settingsModal" style="display:none;">
+    <div class="modal-dialog glass-panel">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+          <h3 class="modal-title">AWS Server Endpoints Configuration</h3>
+        </div>
+        <button class="modal-close-btn" id="closeSettingsBtn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-info-text">
+          Enter the real Public IPv4 addresses or Elastic IPs from your AWS EC2 instances. The portal will automatically update all generated WireGuard configs and QR codes.
+        </p>
+
+        <div class="input-group">
+          <label for="inputIpGermany" class="input-label">
+            <span>🇩🇪 Germany (Frankfurt) Public IP</span>
+            <span class="label-sub">Port: 51820</span>
+          </label>
+          <input type="text" id="inputIpGermany" class="input-field" placeholder="e.g. 3.120.45.19">
+        </div>
+
+        <div class="input-group">
+          <label for="inputIpFrance" class="input-label">
+            <span>🇫🇷 France (Paris) Public IP</span>
+            <span class="label-sub">Port: 51820</span>
+          </label>
+          <input type="text" id="inputIpFrance" class="input-field" placeholder="e.g. 15.237.89.44">
+        </div>
+
+        <div class="input-group">
+          <label for="inputIpAustralia" class="input-label">
+            <span>🇦🇺 Australia (Sydney) Public IP</span>
+            <span class="label-sub">Port: 51820</span>
+          </label>
+          <input type="text" id="inputIpAustralia" class="input-field" placeholder="e.g. 13.239.112.78">
+        </div>
+
+        <div class="alert-tip">
+          <strong>Tip:</strong> These values are stored safely in your browser's local storage.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="resetDefaultsBtn" class="btn btn-secondary">Reset Demo IPs</button>
+        <button id="saveSettingsBtn" class="btn btn-primary">Save Endpoints</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Setup Guide Modal -->
+  <div class="modal-backdrop" id="guideModal" style="display:none;">
+    <div class="modal-dialog glass-panel guide-dialog">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 16v-4"></path>
+            <path d="M12 8h.01"></path>
+          </svg>
+          <h3 class="modal-title">Team Setup Guide: How to Connect</h3>
+        </div>
+        <button class="modal-close-btn" id="closeGuideBtn">&times;</button>
+      </div>
+      <div class="modal-body guide-body">
+        <div class="guide-step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>Install WireGuard</h4>
+            <p>Download the official free WireGuard app for your operating system:</p>
+            <div class="platform-tags">
+              <a href="https://www.wireguard.com/install/" target="_blank" rel="noopener" class="platform-link">Windows</a>
+              <a href="https://www.wireguard.com/install/" target="_blank" rel="noopener" class="platform-link">macOS</a>
+              <a href="https://play.google.com/store/apps/details?id=com.wireguard.android" target="_blank" rel="noopener" class="platform-link">Android</a>
+              <a href="https://apps.apple.com/us/app/wireguard/id1451159935" target="_blank" rel="noopener" class="platform-link">iOS</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>Select Your Name & Desired Country</h4>
+            <p>Choose your name from the top header (Alex, Maya, Liam, Elena, or Jordan). Then click on <strong>Germany</strong>, <strong>France</strong>, or <strong>Australia</strong>.</p>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>Import and Activate</h4>
+            <p><strong>On PC/Mac:</strong> Click <em>"Download .conf"</em> and drag the file directly into WireGuard. Click <strong>Activate</strong>.</p>
+            <p><strong>On Phone:</strong> Open WireGuard, tap <strong>+</strong> ➔ <em>"Create from QR code"</em>, and scan the QR code on this screen.</p>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h4>Verify Your Location</h4>
+            <p>Visit <a href="https://ifconfig.me" target="_blank" rel="noopener" class="inline-link">ifconfig.me</a> or <a href="https://whatismyipaddress.com" target="_blank" rel="noopener" class="inline-link">whatismyipaddress.com</a>. You will see that your IP location is now in Frankfurt, Paris, or Sydney!</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="gotItGuideBtn" class="btn btn-primary">Got it, let's connect!</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast-notification" id="toastNotice" style="display:none;">
+    <span class="toast-icon">✓</span>
+    <span class="toast-message" id="toastMessage">Configuration copied to clipboard!</span>
+  </div>
+
+  <!-- Pure JS application logic -->
+  <script src="app.js"></script>
+</body>
+</html>
