@@ -3,67 +3,67 @@
  * Pure Vanilla JavaScript with zero external dependencies.
  */
 
-// --- Initial Mock Cryptographic Keys & Team Roster ---
+// --- Initial Team Roster Matching Your Real AWS WireGuard Server ---
 const TEAM_MEMBERS = [
   {
     id: 0,
-    name: "Alex Vance",
-    role: "DevOps & Infrastructure",
-    avatar: "AV",
+    name: "Member-1",
+    role: "Active Member",
+    avatar: "M1",
     ip: "10.8.0.2",
     privateKey: "aHR0cHM6Ly93aXJlZ3VhcmQuY29tL3ByaXZhdGVrZXkx",
     publicKey: "d2lyZWd1YXJkLXBsYXRmb3JtLXB1YmxpYy1rZXktMQ==",
     status: "Active",
-    lastHandshake: "2 mins ago",
-    dataTransfer: "1.42 GB"
+    lastHandshake: "1 min ago",
+    dataTransfer: "81.58 MB"
   },
   {
     id: 1,
-    name: "Maya Lin",
-    role: "Frontend Engineer",
-    avatar: "ML",
+    name: "Member-2",
+    role: "Team Member",
+    avatar: "M2",
     ip: "10.8.0.3",
     privateKey: "bWF5YTIwMjZ3aXJlZ3VhcmRwcml2YXRla2V5Mg==",
     publicKey: "bWF5YS1wdWJsaWMta2V5LXRlYW0tbWVtYmVyLTI=",
-    status: "Active",
-    lastHandshake: "12 mins ago",
-    dataTransfer: "890 MB"
+    status: "Idle",
+    lastHandshake: "Never",
+    dataTransfer: "0 MB"
   },
   {
     id: 2,
-    name: "Liam Chen",
-    role: "Backend Architect",
-    avatar: "LC",
+    name: "Member-3",
+    role: "Team Member",
+    avatar: "M3",
     ip: "10.8.0.4",
     privateKey: "bGlhbWNoZW5wcml2YXRla2V5d2lyZWd1YXJkMw==",
     publicKey: "bGlhbS1wdWJsaWMta2V5LXRlYW0tbWVtYmVyLTM=",
     status: "Idle",
-    lastHandshake: "1 hour ago",
-    dataTransfer: "3.15 GB"
+    lastHandshake: "Never",
+    dataTransfer: "0 MB"
   },
   {
     id: 3,
-    name: "Elena Rossi",
-    role: "QA & Security",
-    avatar: "ER",
+    name: "Member-4",
+    role: "Team Member",
+    avatar: "M4",
     ip: "10.8.0.5",
     privateKey: "ZWxlbmFyb3NzaXByaXZhdGVrZXl3aXJlZ3VhcmQ0",
     publicKey: "ZWxlbmEtcHVibGljLWtleS10ZWFtLW1lbWJlci00",
-    status: "Active",
-    lastHandshake: "Just now",
-    dataTransfer: "512 MB"
+    status: "Idle",
+    lastHandshake: "Never",
+    dataTransfer: "0 MB"
   },
   {
     id: 4,
-    name: "Jordan Reed",
-    role: "Product & Operations",
-    avatar: "JR",
+    name: "Admin",
+    role: "Team Lead",
+    avatar: "AD",
     ip: "10.8.0.6",
     privateKey: "am9yZGFucmVlZHByaXZhdGVrZXl3aXJlZ3VhcmQ1",
     publicKey: "am9yZGFuLXB1YmxpYy1rZXktdGVhbS1tZW1iZXItNQ==",
-    status: "Offline",
-    lastHandshake: "1 day ago",
-    dataTransfer: "120 MB"
+    status: "Idle",
+    lastHandshake: "Never",
+    dataTransfer: "0 MB"
   }
 ];
 
@@ -99,7 +99,7 @@ const DEFAULT_SERVERS = {
     city: "Sydney",
     flag: "🇦🇺",
     awsRegion: "ap-southeast-2",
-    ip: "13.239.112.78",
+    ip: "3.107.224.164",
     port: 51820,
     serverPublicKey: "c2VydmVyLWF1c3RyYWxpYS1zeWRuZXktcHVibGljLWtleS0=",
     basePing: 182,
@@ -110,7 +110,7 @@ const DEFAULT_SERVERS = {
 // --- Application State ---
 let appState = {
   selectedUserIndex: 0,
-  activeRegion: "germany",
+  activeRegion: "australia",
   isConnected: false,
   servers: { ...DEFAULT_SERVERS },
   bandwidthInterval: null
