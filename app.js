@@ -75,7 +75,7 @@ const DEFAULT_SERVERS = {
     city: "Frankfurt am Main",
     flag: "🇩🇪",
     awsRegion: "eu-central-1",
-    ip: "3.120.45.19",
+    ip: "3.75.188.227",
     port: 51820,
     serverPublicKey: "c2VydmVyLWdlcm1hbnktZnJhbmtmdXJ0LXB1YmxpYy1rZXk=",
     basePing: 32,
@@ -110,7 +110,7 @@ const DEFAULT_SERVERS = {
 // --- Application State ---
 let appState = {
   selectedUserIndex: 0,
-  activeRegion: "australia",
+  activeRegion: "germany",
   isConnected: false,
   servers: { ...DEFAULT_SERVERS },
   bandwidthInterval: null
